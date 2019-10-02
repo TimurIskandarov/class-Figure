@@ -29,7 +29,7 @@ class SegmentLine
 	Point A;
 	Point B;
 public:
-	SegmentLine(Point a = (0, 0), Point b = (-1, -1)) : A(a), B(b) {
+	SegmentLine(Point a = Point(0, 0), Point b = Point(-1, -1)) : A(a), B(b) {
 		if (A == B) throw "отрезок стягивается в точку!";
 	}
 	double getPlaneX() const { return abs(B.getX() - A.getX()); } // проекция на ось X
@@ -48,7 +48,7 @@ protected:
 	double minorAxis;
 	double majorAxis;
 public: 
-	Figure(Point& A, Point& B, Point C = (0, 0)) : a(A), b(B), c(C), diag(A, B) {}
+	Figure(Point& A, Point& B, Point C = Point(0, 0)) : a(A), b(B), c(C), diag(A, B) {}
 	Figure(SegmentLine& Diag) : diag(Diag) {}
 	Figure(Point& center, double& min, double& maj) : a(center), minorAxis(min), majorAxis(maj) {}
 	virtual double border() const = 0; // периметр
@@ -176,12 +176,13 @@ int main() {
 		
 		Point E(-1, -1); Point F(2, 2); Point G(-141.01, -141.01);
 		cout << "Попытка создания объекта 'Треугольник'" << endl;
-		Triangle trig1(E, G, F);
+		Triangle trig1(E, A, F);
 		cout << "Объект создан успешно!" << endl << endl;
 		cout << "Периметр: " << trig1.border() << endl;
 		cout << "Площадь: " << trig1.square() << endl;
 		trig1.draw();
 		cout << endl;
+
 	}
 	catch (const char * ex) { cout << "Ошибка: " << ex << endl << endl; }
 	system("pause");
