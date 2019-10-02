@@ -19,6 +19,9 @@ public:
 	bool operator==(const Point& two) const {
 		return this->x == two.x && this->y == two.y;
 	}
+	void operator=(const Point& two) {
+		this->x = two.x; this->y = two.y;
+	}
 };
 
 class SegmentLine
